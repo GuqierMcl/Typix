@@ -11,7 +11,7 @@ const store = useStore()
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    title: 'Typix' + ' ' + app.getVersion(),
+    title: 'Typix',
     width: 900,
     height: 670,
     show: false,

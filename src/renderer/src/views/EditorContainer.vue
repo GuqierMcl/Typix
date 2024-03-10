@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, nextTick } from 'vue'
 const text = ref('')
 
 const handleChange = async (_text, _html) => {
@@ -26,13 +26,32 @@ const handleSave = async () => {
   window.api.save(text.value)
 }
 
-// const handleKeyUp = (event: KeyboardEvent) => {
-//   if (event.key === 'Tab') {
-//     for (let i = 0; i < window.api.getStore('preferences.tabSize'); i++) {
-//       text.value = text.value + ' '
-//     }
-//   }
-// }
+const handleKeyUp = async (event: KeyboardEvent) => {
+  if (event.key === 'Tab') {
+    event.preventDefault()
+    const textarea = event.target
+    // 获取光标位置
+    // @ts-ignore
+    const start = textarea.selectionStart as number
+    // @ts-ignore
+    const end = textarea.selectionEnd as number
+
+    // 在光标位置插入空格
+    let n = window.api.getStore('preferences.tabSize')
+    let tabStr = ''
+    for (let i = 0; i < n; i++) {
+      tabStr += ' '
+    }
+    text.value = text.value.slice(0, start) + '  ' + text.value.slice(end)
+
+    // 设置光标位置
+    await nextTick()
+    // @ts-ignore
+    textarea.selectionStart = textarea.selectionEnd = start + n
+    // @ts-ignore
+    
+  }
+}
 
 onMounted(() => {
   // 监听打开文件
@@ -68,7 +87,7 @@ onMounted(() => {
   })
 
   // 监听键盘事件
-  // window.addEventListener('keyup', handleKeyUp, true)
+  window.addEventListener('keyup', handleKeyUp, true)
 })
 </script>
 
