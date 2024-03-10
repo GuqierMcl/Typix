@@ -13,6 +13,7 @@ interface Api {
   setTitle: (text: string, type: string) => any
   getStore: (key: string) => any
   setStore: (key: string, value: any) => any
+  showContextMenu: () => any
 }
 
 declare global {

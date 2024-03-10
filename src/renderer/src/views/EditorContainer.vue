@@ -52,6 +52,12 @@ onMounted(() => {
   window.api.onCloseAndSaveFile(() => {
     window.api.saveAndClose(text.value)
   })
+
+  // 绑定右键菜单
+  window.addEventListener('contextmenu', (e) => {
+    e.preventDefault()
+    window.api.showContextMenu()
+  })
 })
 </script>
 

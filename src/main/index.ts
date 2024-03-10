@@ -2,7 +2,7 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/logo.png?asset'
-import { createMenu } from './common/menu'
+import { createMenu, createContextMenu } from './common/menu'
 import { setTitle, save, saveAs, quitApp } from './common/handler'
 import { useStore } from './common/store'
 
@@ -94,6 +94,11 @@ function createWindow(): void {
       setTitle(mainWindow, '', 'default')
     }
   })
+
+  // 打开上下文菜单
+  ipcMain.on('show-context-menu', () => {
+    createContextMenu()
+  })
 }
 
 // This method will be called when Electron has finished
@@ -109,6 +114,7 @@ app.whenReady().then(() => {
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
   })
+  console.log(process.argv)
   createWindow()
 
   app.on('activate', function () {

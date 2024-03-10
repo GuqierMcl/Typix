@@ -67,3 +67,22 @@ export function createMenu(app: Electron.App, win: BrowserWindow) {
   const menu = Menu.buildFromTemplate(template as any)
   Menu.setApplicationMenu(menu)
 }
+
+export function createContextMenu() {
+  const contextTemplate = [
+    {
+      label: '剪切',
+      role: 'cut'
+    },
+    {
+      label: '复制',
+      role: 'copy'
+    },
+    {
+      label: '粘贴',
+      role: 'paste'
+    }
+  ]
+  const contextMenu = Menu.buildFromTemplate(contextTemplate as any)
+  contextMenu.popup()
+}

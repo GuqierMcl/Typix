@@ -36,7 +36,10 @@ const api = {
   getStore: (key: string) => ipcRenderer.sendSync('get-store', key),
 
   /* 设置Store值 */
-  setStore: (key: string, value: any) => ipcRenderer.send('set-store', key, value)
+  setStore: (key: string, value: any) => ipcRenderer.send('set-store', key, value),
+
+  /* 显示上下文菜单 */
+  showContextMenu: () => ipcRenderer.send('show-context-menu')
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
