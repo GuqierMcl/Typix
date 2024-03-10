@@ -20,8 +20,11 @@ English | [简体中文](./README.zh-CN.md)
 <div align="center">
     <img align="center" src=".\README.assets\image-20240310171154968.png" />
 </div>
-
 An open-source Markdown editor built on ![Static Badge](https://img.shields.io/badge/Electron-28.1.4-blue), which is simple and easy to use, with quick startup. It can be a free alternative to Typora.
+
+## Dependent projects
+
+- [vue-markdown-editor]([code-farmer-i/vue-markdown-editor: A markdown editor built on Vue (github.com)](https://github.com/code-farmer-i/vue-markdown-editor))
 
 ## License
 

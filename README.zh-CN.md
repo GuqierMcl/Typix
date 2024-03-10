@@ -23,6 +23,10 @@ English | [简体中文](./README.zh-CN.md)
 
 一款基于![Static Badge](https://img.shields.io/badge/Electron-28.1.4-blue)构建的开源Markdown编辑器。简单易用，启动迅速，可作为Typora的免费平替。
 
+## 依赖项目
+
+- [vue-markdown-editor]([code-farmer-i/vue-markdown-editor: A markdown editor built on Vue (github.com)](https://github.com/code-farmer-i/vue-markdown-editor))
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/rubickCenter/rubick/blob/master/LICENSE) file for details.
