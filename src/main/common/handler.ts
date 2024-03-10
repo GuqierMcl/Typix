@@ -34,6 +34,28 @@ export function openFile(win: BrowserWindow) {
   return ''
 }
 
+export function openFileByPath(filePath: string) {
+  var stat = fs.lstatSync(filePath)
+  if (stat.isFile()) {
+    try {
+      const content = fs.readFileSync(filePath).toString()
+
+      // 保存当前文件信息
+      store.set('curr', {
+        fileName: path.basename(filePath),
+        filePath: path.dirname(filePath),
+        saved: true,
+        changed: false
+      })
+
+      return content
+    } catch (e) {
+      dialog.showErrorBox('打开文件失败', '文件不存在或者文件格式不支持！')
+    }
+  }
+  return ''
+}
+
 export function save(win: BrowserWindow, content: string) {
   const curr = store.get('curr') as any
   if (curr.saved) {
@@ -109,7 +131,7 @@ export function quitApp(win: BrowserWindow) {
       defaultId: 0,
       cancelId: 2
     })
-    
+
     if (result === 0) {
       win.webContents.send('close-and-save-file', true)
       return false

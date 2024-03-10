@@ -6,7 +6,7 @@
       :include-level="[1, 4]"
       left-toolbar="undo redo clear | h bold italic strikethrough quote | ul ol table hr | link image code | emoji"
       right-toolbar="preview toc sync-scroll"
-      autofocus="true"
+      :autofocus="true"
       @change="handleChange"
       @save="handleSave"
     ></v-md-editor>
@@ -18,13 +18,21 @@ import { onMounted, ref } from 'vue'
 const text = ref('')
 
 const handleChange = async (_text, _html) => {
-  if(text.value === '') return
+  if (text.value === '') return
   window.api.setStore('curr.changed', true)
 }
 
 const handleSave = async () => {
   window.api.save(text.value)
 }
+
+// const handleKeyUp = (event: KeyboardEvent) => {
+//   if (event.key === 'Tab') {
+//     for (let i = 0; i < window.api.getStore('preferences.tabSize'); i++) {
+//       text.value = text.value + ' '
+//     }
+//   }
+// }
 
 onMounted(() => {
   // 监听打开文件
@@ -58,6 +66,9 @@ onMounted(() => {
     e.preventDefault()
     window.api.showContextMenu()
   })
+
+  // 监听键盘事件
+  // window.addEventListener('keyup', handleKeyUp, true)
 })
 </script>
 

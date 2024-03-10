@@ -10,5 +10,9 @@ export function useStore() {
     changed: false
   })
 
+  store.has('preferences') || store.set('preferences', {
+    tabSize: 2, // tab 缩进大小
+  })
+
   return store
 }

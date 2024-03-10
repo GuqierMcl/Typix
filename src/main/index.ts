@@ -3,7 +3,7 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/logo.png?asset'
 import { createMenu, createContextMenu } from './common/menu'
-import { setTitle, save, saveAs, quitApp } from './common/handler'
+import { setTitle, save, saveAs, quitApp, openFileByPath } from './common/handler'
 import { useStore } from './common/store'
 
 const store = useStore()
@@ -27,6 +27,11 @@ function createWindow(): void {
   })
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
+    // 判断是否打开文件
+    if (process.argv.length > 1) {
+      const content = openFileByPath(process.argv[1])
+      mainWindow.webContents.send('open-file', content)
+    }
   })
   mainWindow.on('close', (e) => {
     // 判断是否要保存文件
@@ -63,8 +68,6 @@ function createWindow(): void {
   })
   ipcMain.on('save-and-close', (_event, content) => {
     let result = save(mainWindow, content)
-    console.log(result);
-    
     if (result === true) {
       mainWindow.close()
     }
@@ -106,7 +109,7 @@ function createWindow(): void {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   // Set app user model id for windows
-  electronApp.setAppUserModelId('com.electron')
+  electronApp.setAppUserModelId('com.typix')
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
@@ -114,7 +117,6 @@ app.whenReady().then(() => {
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
   })
-  console.log(process.argv)
   createWindow()
 
   app.on('activate', function () {
