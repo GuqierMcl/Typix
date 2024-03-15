@@ -1,6 +1,6 @@
 {
   "name": "typix",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An MarkDown Text Editor by Electron application with Vue and TypeScript",
   "main": "./out/main/index.js",
   "author": "Guqier",
