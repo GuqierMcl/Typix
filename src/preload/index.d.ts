@@ -14,6 +14,8 @@ interface Api {
   getStore: (key: string) => any
   setStore: (key: string, value: any) => any
   showContextMenu: () => any
+  closeAboutWin: () => any
+  openExternal: (url: string) => any
 }
 
 declare global {

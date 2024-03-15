@@ -1,5 +1,6 @@
 import { BrowserWindow, Menu } from 'electron'
 import { openFile } from './handler'
+import { createAboutWin } from './createWins'
 
 export function createMenu(app: Electron.App, win: BrowserWindow) {
   const template = [
@@ -100,7 +101,10 @@ export function createMenu(app: Electron.App, win: BrowserWindow) {
           label: '检查更新'
         },
         {
-          label: '关于Typix'
+          label: '关于Typix',
+          click() {
+            createAboutWin(win, app)
+          }
         }
       ]
     }

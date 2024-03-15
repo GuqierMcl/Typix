@@ -42,12 +42,17 @@ const handleKeyUp = async (event: KeyboardEvent) => {
     for (let i = 0; i < n; i++) {
       tabStr += ' '
     }
+    console.log(111);
+    
     text.value = text.value.slice(0, start) + '  ' + text.value.slice(end)
 
+
     // 设置光标位置
-    await nextTick()
-    // @ts-ignore
-    textarea.selectionStart = textarea.selectionEnd = start + n
+    await nextTick(() => {
+      // @ts-ignore
+      textarea.selectionStart = textarea.selectionEnd = start + n
+    })
+    
     // @ts-ignore
     
   }

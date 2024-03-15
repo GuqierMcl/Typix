@@ -39,7 +39,13 @@ const api = {
   setStore: (key: string, value: any) => ipcRenderer.send('set-store', key, value),
 
   /* 显示上下文菜单 */
-  showContextMenu: () => ipcRenderer.send('show-context-menu')
+  showContextMenu: () => ipcRenderer.send('show-context-menu'),
+
+  /* 关闭关于窗口 */
+  closeAboutWin: () => ipcRenderer.send('close-about-win'),
+
+  /* 打开外部链接 */
+  openExternal: (url: string) => ipcRenderer.send('open-external', url)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

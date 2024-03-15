@@ -102,6 +102,11 @@ function createWindow(): void {
   ipcMain.on('show-context-menu', () => {
     createContextMenu()
   })
+
+  // 打开外部链接
+  ipcMain.on('open-external', (_event, url) => {
+    shell.openExternal(url)
+  })
 }
 
 // This method will be called when Electron has finished
