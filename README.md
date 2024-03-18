@@ -6,6 +6,9 @@ English | [简体中文](./README.zh-CN.md)
 <div align= "center">
  <h1>Typix</h1>
  <img alt="release" src="https://img.shields.io/github/downloads/GuqierMcl/Typix/total" />
+ <a href="https://www.electronjs.org/">
+    <img alt="Electron" src="https://img.shields.io/badge/Electron-28.1.4-blue" />
+ </a>
  <a href="https://github.com/GuqierMcl/Typix/releases">
     <img alt="release" src="https://img.shields.io/github/package-json/v/GuqierMcl/Typix" />
  </a>
@@ -20,12 +23,12 @@ English | [简体中文](./README.zh-CN.md)
 <div align="center">
     <img align="center" src=".\README.assets\image-20240310171154968.png" />
 </div>
-An open-source Markdown editor built on ![Static Badge](https://img.shields.io/badge/Electron-28.1.4-blue), which is simple and easy to use, with quick startup. It can be a free alternative to Typora.
+An open-source Markdown editor built on , which is simple and easy to use, with quick startup. It can be a free alternative to Typora.
 
-## Dependent projects
+## Thanks
 
-- [vue-markdown-editor]([code-farmer-i/vue-markdown-editor: A markdown editor built on Vue (github.com)](https://github.com/code-farmer-i/vue-markdown-editor))
+- [vue-markdown-editor](https://github.com/code-farmer-i/vue-markdown-editor)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/rubickCenter/rubick/blob/master/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/GuqierMcl/Typix/blob/master/LICENSE) file for details.
