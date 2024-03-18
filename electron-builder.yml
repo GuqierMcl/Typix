@@ -22,7 +22,7 @@ nsis:
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
   # 允许请求提升。 如果为false，则用户必须使用提升的权限重新启动安装程序。
-  allowElevation: false
+  allowElevation: true
   # 允许修改安装目录，建议为 true，是否允许用户改变安装目录，默认是不允许
   allowToChangeInstallationDirectory: true
   # 卸载时删除用户数据

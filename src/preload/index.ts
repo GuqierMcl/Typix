@@ -45,7 +45,13 @@ const api = {
   closeAboutWin: () => ipcRenderer.send('close-about-win'),
 
   /* 打开外部链接 */
-  openExternal: (url: string) => ipcRenderer.send('open-external', url)
+  openExternal: (url: string) => ipcRenderer.send('open-external', url),
+
+  /* 获取版本信息 */
+  getVersions: () => ipcRenderer.send('get-version'),
+
+  /* 获取版本信息回调 */
+  onVersion: (callback) => ipcRenderer.on('version', (_event, value) => callback(value))
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

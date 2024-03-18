@@ -1,6 +1,6 @@
 import { BrowserWindow, ipcMain } from 'electron'
 import icon from '../../../resources/logo.png?asset'
-import { join } from 'path'
+import { join, resolve } from 'path'
 import { is } from '@electron-toolkit/utils'
 
 export function createAboutWin(parentWin: BrowserWindow, app: Electron.App) {
@@ -15,6 +15,7 @@ export function createAboutWin(parentWin: BrowserWindow, app: Electron.App) {
     // ...(process.platform === 'linux' ? { icon } : {}),
     icon,
     webPreferences: {
+      webSecurity: false,
       devTools: true, // 开发者工具
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
@@ -23,9 +24,12 @@ export function createAboutWin(parentWin: BrowserWindow, app: Electron.App) {
   })
 
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    win.loadURL(process.env['ELECTRON_RENDERER_URL'] + `/#/about?version=${app.getVersion()}`)
+    // process.env['ELECTRON_RENDERER_URL'] => http://localhost:5173
+    win.loadURL(process.env['ELECTRON_RENDERER_URL'] + `/#/about`)
   } else {
-    win.loadFile(join(__dirname, '../renderer/index.html' + `/#/about?version=${app.getVersion()}`))
+    win.loadFile(resolve(__dirname, '../renderer/index.html'), {
+      hash: 'about'
+    })
   }
 
   win.on('ready-to-show', () => {
@@ -38,6 +42,10 @@ export function createAboutWin(parentWin: BrowserWindow, app: Electron.App) {
 
   ipcMain.on('close-about-win', () => {
     win.isDestroyed() || win.close()
+  })
+
+  ipcMain.on('get-version', () => {
+    win.isDestroyed() || win.webContents.send('version', app.getVersion())
   })
 
   return win

@@ -5,7 +5,7 @@
       <div class="title" style="margin-top: 30px">
         <div>
           <span style="font-size: 40px; font-weight: bold">Typix</span>
-          <span style="color: grey">{{ route.query.version }}</span>
+          <span style="color: grey">{{ version }}</span>
         </div>
         <div>
           <span style="font-size: 15px; color: grey; margin-top: 10px">MADE WITH BY GuqierMcl</span>
@@ -22,8 +22,9 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-const route = useRoute()
+import { onMounted, ref } from 'vue';
+
+const version = ref('')
 
 const closeWin = () => {
   window.api.closeAboutWin()
@@ -32,6 +33,13 @@ const closeWin = () => {
 const openGitHub = () => {
   window.api.openExternal('https://github.com/GuqierMcl/Typix')
 }
+
+onMounted(() => {
+  window.api.getVersions()
+  window.api.onVersion((data: any) => {
+    version.value = data
+  })
+})
 </script>
 
 <style scoped>

@@ -3,7 +3,7 @@
     <v-md-editor
       v-model="text"
       height="calc((100vh - 18px))"
-      :include-level="[1, 4]"
+      :include-level="[1, 2, 3, 4]"
       left-toolbar="undo redo clear | h bold italic strikethrough quote | ul ol table hr | link image code | emoji"
       right-toolbar="preview toc sync-scroll"
       :autofocus="true"
@@ -42,19 +42,17 @@ const handleKeyUp = async (event: KeyboardEvent) => {
     for (let i = 0; i < n; i++) {
       tabStr += ' '
     }
-    console.log(111);
-    
-    text.value = text.value.slice(0, start) + '  ' + text.value.slice(end)
+    console.log(111)
 
+    text.value = text.value.slice(0, start) + '  ' + text.value.slice(end)
 
     // 设置光标位置
     await nextTick(() => {
       // @ts-ignore
       textarea.selectionStart = textarea.selectionEnd = start + n
     })
-    
+
     // @ts-ignore
-    
   }
 }
 

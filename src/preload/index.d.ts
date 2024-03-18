@@ -16,6 +16,8 @@ interface Api {
   showContextMenu: () => any
   closeAboutWin: () => any
   openExternal: (url: string) => any
+  getVersions: () => any
+  onVersion: (callback: Function) => any
 }
 
 declare global {
