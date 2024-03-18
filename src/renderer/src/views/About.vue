@@ -1,5 +1,5 @@
 <template>
-  <div class="space">
+  <div class="space" style="-webkit-app-region: drag">
     <div class="header">
       <img alt="Typix" src="../assets/logo.png" style="height: 100px; margin-top: 30px" />
       <div class="title" style="margin-top: 30px">
@@ -10,19 +10,19 @@
         <div>
           <span style="font-size: 15px; color: grey; margin-top: 10px">MADE WITH BY GuqierMcl</span>
         </div>
-        <div class="link-bar">
+        <div class="link-bar" style="-webkit-app-region: no-drag;">
           <button class="btn" @click="openGitHub">GitHub</button>
         </div>
       </div>
     </div>
-    <div class="footer">
+    <div class="footer" style="-webkit-app-region: no-drag;">
       <button class="btn" @click="closeWin">关闭</button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue'
 
 const version = ref('')
 

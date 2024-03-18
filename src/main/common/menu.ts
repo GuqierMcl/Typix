@@ -1,6 +1,6 @@
 import { BrowserWindow, Menu } from 'electron'
 import { openFile } from './handler'
-import { createAboutWin } from './createWins'
+import { createAboutWin } from './window'
 
 export function createMenu(app: Electron.App, win: BrowserWindow) {
   const template = [
