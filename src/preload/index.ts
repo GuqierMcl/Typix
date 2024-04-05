@@ -18,7 +18,8 @@ const api = {
   onNewFile: (callback) => ipcRenderer.on('new-file', (_event, value) => callback(value)),
 
   /* 关闭并保存文件回调 */
-  onCloseAndSaveFile: (callback) => ipcRenderer.on('close-and-save-file', (_event, value) => callback(value)),
+  onCloseAndSaveFile: (callback) =>
+    ipcRenderer.on('close-and-save-file', (_event, value) => callback(value)),
 
   /* 保存文件 */
   save: (content: string) => ipcRenderer.send('save', content),
@@ -51,7 +52,13 @@ const api = {
   getVersions: () => ipcRenderer.send('get-version'),
 
   /* 获取版本信息回调 */
-  onVersion: (callback) => ipcRenderer.on('version', (_event, value) => callback(value))
+  onVersion: (callback) => ipcRenderer.on('version', (_event, value) => callback(value)),
+
+  /* 注册事件 */
+  on: (channel: string, callback) => ipcRenderer.on(channel, (_event, value) => callback(value)),
+
+  /* 关闭设置窗口 */
+  closePreferencesWin: () => ipcRenderer.send('close-preferences-win'),
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

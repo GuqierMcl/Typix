@@ -1,6 +1,6 @@
 import { BrowserWindow, Menu } from 'electron'
 import { openFile } from './handler'
-import { createAboutWin } from './window'
+import { createAboutWin, createPreferencesWin } from './window'
 
 export function createMenu(app: Electron.App, win: BrowserWindow) {
   const template = [
@@ -42,7 +42,9 @@ export function createMenu(app: Electron.App, win: BrowserWindow) {
         {
           label: '设置',
           accelerator: 'CmdOrCtrl+,',
-          enabled: false
+          click() {
+            createPreferencesWin(win, app)
+          }
         },
         {
           label: '关闭',

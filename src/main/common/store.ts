@@ -10,9 +10,17 @@ export function useStore() {
     changed: false
   })
 
-  store.has('preferences') || store.set('preferences', {
-    tabSize: 2, // tab 缩进大小
-  })
+  const preferencesDefault = {
+    common: {
+      launchOption: 'new', // 启动选项, new: 新建文件, last: 上次打开的文件
+      autoSave: false // 自动保存
+    },
+    editor: {
+      tabSize: 2 // tab 缩进大小
+    }
+  }
+
+  store.has('preferences') || store.set('preferences', preferencesDefault)
 
   return store
 }

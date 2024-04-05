@@ -16,9 +16,10 @@
 <script setup lang="ts">
 import { onMounted, ref, nextTick } from 'vue'
 const text = ref('')
+const mountedText = ref('')
 
 const handleChange = async (_text, _html) => {
-  if (text.value === '') return
+  if (text.value === '' || text.value === mountedText.value) return
   window.api.setStore('curr.changed', true)
 }
 
@@ -37,14 +38,13 @@ const handleKeyUp = async (event: KeyboardEvent) => {
     const end = textarea.selectionEnd as number
 
     // 在光标位置插入空格
-    let n = window.api.getStore('preferences.tabSize')
+    let n = window.api.getStore('preferences.editor.tabSize')
     let tabStr = ''
     for (let i = 0; i < n; i++) {
       tabStr += ' '
     }
-    console.log(111)
 
-    text.value = text.value.slice(0, start) + '  ' + text.value.slice(end)
+    text.value = text.value.slice(0, start) + tabStr + text.value.slice(end)
 
     // 设置光标位置
     await nextTick(() => {
@@ -62,6 +62,7 @@ onMounted(() => {
     if (value === '') {
       return
     }
+    mountedText.value = value
     text.value = value
     window.api.setStore('curr.changed', false)
   })

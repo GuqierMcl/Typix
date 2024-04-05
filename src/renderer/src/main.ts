@@ -25,12 +25,9 @@ import createEmojiPlugin from '@kangc/v-md-editor/lib/plugins/emoji/index'
 import '@kangc/v-md-editor/lib/plugins/emoji/emoji.css'
 VMdEditor.use(createEmojiPlugin())
 
-import { routes } from './route/route'
-import { createRouter, createWebHashHistory } from 'vue-router'
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes
-})
+/* Vue-Router */
+import { create } from './route/route'
+const router = create();
 
 const app = createApp(App)
 app.use(router)

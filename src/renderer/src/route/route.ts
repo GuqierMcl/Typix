@@ -1,5 +1,15 @@
+import { createRouter, createWebHashHistory } from 'vue-router'
+
+export function create() {
+  const router = createRouter({
+    history: createWebHashHistory(),
+    routes
+  })
+
+  return router
+}
 // 用于配置路由
-export const routes = [
+const routes = [
   {
     name: 'home',
     path: '/',
@@ -9,5 +19,12 @@ export const routes = [
     name: 'about',
     path: '/about',
     component: () => import('../views/About.vue')
+  },
+  {
+    name: 'preferences',
+    path: '/preferences',
+    component: () => import('../views/preferences/Preferences.vue')
   }
 ]
+
+

@@ -1,6 +1,6 @@
 {
   "name": "typix",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An MarkDown Text Editor by Electron application with Vue and TypeScript",
   "main": "./out/main/index.js",
   "author": "Guqier",
@@ -41,6 +41,7 @@
     "eslint": "^8.56.0",
     "eslint-plugin-vue": "^9.19.2",
     "less": "^4.2.0",
+    "naive-ui": "^2.38.1",
     "prettier": "^3.1.1",
     "typescript": "^5.3.3",
     "vite": "^5.0.11",

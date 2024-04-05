@@ -18,6 +18,8 @@ interface Api {
   openExternal: (url: string) => any
   getVersions: () => any
   onVersion: (callback: Function) => any
+  on: (channel: string, callback: Function) => any
+  closePreferencesWin: () => any
 }
 
 declare global {
