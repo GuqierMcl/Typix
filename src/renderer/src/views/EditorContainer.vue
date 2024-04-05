@@ -17,13 +17,25 @@
 import { onMounted, ref, nextTick } from 'vue'
 const text = ref('')
 const mountedText = ref('')
+const lastSaveTime = ref<any>(null)
 
 const handleChange = async (_text, _html) => {
-  if (text.value === '' || text.value === mountedText.value) return
+  if (text.value === '' || text.value === mountedText.value) {
+    mountedText.value = '' // 清空缓存
+    return
+  }
   window.api.setStore('curr.changed', true)
+  if (window.api.getStore('preferences.common.autoSave')) {
+    handleSave()
+  }
 }
 
 const handleSave = async () => {
+  const nowTime = new Date().getTime();
+  const elapsedTime = nowTime - lastSaveTime.value;
+  if(lastSaveTime.value && elapsedTime < 1000) {
+    return
+  }
   window.api.save(text.value)
 }
 

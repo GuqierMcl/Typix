@@ -5,7 +5,6 @@
     </div>
     <n-form
       label-placement="left"
-      label-width="auto"
       require-mark-placement="right-hanging"
       :style="{ maxWidth: '400px' }"
       size="small"
@@ -20,7 +19,9 @@
               :default-value="'new'"
             />
           </n-form-item>
-          {{ commonValue }}
+          <n-form-item label="自动保存">
+            <n-switch v-model:value="commonValue.autoSave" />
+          </n-form-item>
         </n-tab-pane>
         <n-tab-pane name="editor" tab="编辑器">
           <n-form-item label="缩进空格数">
@@ -30,7 +31,6 @@
               :max="6"
               :min="1"
             />
-            {{ editorValue }}
           </n-form-item>
         </n-tab-pane>
       </n-tabs>
@@ -58,14 +58,16 @@ import {
   NFormItem,
   NSelect,
   NInputNumber,
-  NButton
+  NButton,
+  NSwitch
 } from 'naive-ui'
 import { launchOptions } from './common'
 
 const message = useMessage()
 const loading = ref(false)
 const commonValue = ref({
-  launchOption: ''
+  launchOption: '',
+  autoSave: false
 })
 const editorValue = ref({
   tabSize: 2

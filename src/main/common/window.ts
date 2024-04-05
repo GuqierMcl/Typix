@@ -88,7 +88,6 @@ export function createPreferencesWin(parentWin: BrowserWindow, app: Electron.App
 
   win.on('ready-to-show', () => {
     win.show()
-    win.webContents.openDevTools()
   })
 
   win.on('close', () => {
